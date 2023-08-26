@@ -9,20 +9,12 @@
   p {
     @apply text-seconday;
   }
-  .h1 {
-    @apply text-4xl xl: text-[64px] text-primary xl:leading-[72px] font-extrabold mb-[18px];
-  }
+
   .h2 {
     @apply text-4xl mb-6 font-bold;
   }
   .h3 {
     @apply text-xl mb-4 font-semibold;
-  }
-  .description {
-    @apply text-base xl:text-xl xl:leading-8;
-  }
-  .section {
-    @apply w-full h-screen pt-[60px] xl:pt-[120px];
   }
   .btn {
     @apply rounded-[10px] w-full uppercase font-medium text-white tracking-[2px] text-[13px] flex justify-center items-center transition-all duration-300;
@@ -47,5 +39,17 @@
   }
   .active {
     @apply text-accent;
+  }
+}
+
+@layer utilities {
+  .h1 {
+    @apply text-4xl xl:text-[64px] text-primary xl:leading-[72px] font-extrabold mb-[18px];
+  }
+  .description {
+    @apply text-base xl:text-xl xl:leading-8;
+  }
+  .section {
+    @apply w-full h-screen pt-[60px] xl:pt-[120px];
   }
 }

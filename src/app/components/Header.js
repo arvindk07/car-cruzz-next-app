@@ -4,12 +4,14 @@ import Image from "next/image";
 import { Link } from "react-scroll";
 import SearchMobile from "./SearchMobile";
 import { useMediaQuery } from "react-responsive";
-import { useState, useEffect, useContext } from "react";
+import { SearchContext } from "../context/search";
 import { BiMenuAltRight, BiX } from "react-icons/bi";
+import { useState, useEffect, useContext } from "react";
 
 const Header = () => {
-  const [header, setHeader] = useState(false);
   const [nav, setNav] = useState(false);
+  const [header, setHeader] = useState(false);
+  const { setSearchActive } = useContext(SearchContext);
 
   const desktopMode = useMediaQuery({
     query: "(min-width:1300px)",
@@ -22,6 +24,13 @@ const Header = () => {
         setHeader(true);
       } else {
         setHeader(false);
+      }
+
+      // search
+      if (window.scrollY > 800) {
+        setSearchActive(true);
+      } else {
+        setSearchActive(false);
       }
     };
 
