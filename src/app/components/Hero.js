@@ -1,20 +1,101 @@
 "use client";
-import { useContext } from "react";
 import Search from "./Search";
+import Image from "next/image";
+import { useContext } from "react";
 import { SearchContext } from "../context/search";
+import { motion, easeInOut } from "framer-motion";
+
+import { fadeIn } from "../../../variants";
 
 const Hero = () => {
   const { SearchActive } = useContext(SearchContext);
+  console.log("sear", SearchActive);
   return (
     <section className="h-screen xl:h-[90vh] bg-[#b2b7c2]/10" id="home">
-      <div className="container mx-auto h-full xl:pt-10">Container</div>
-      {SearchActive ? (
-        <div className="fixed top-[80px] w-full max-w-[1920px]">
-          <Search />
+      <div className="container mx-auto h-full xl:pt-10">
+        <div className="flex flex-col xl:flex-row justify-center items-center xl:justify-start h-full">
+          <div className="text-center xl:max-w-xl xl:text-left mt-16 xl:mt-0">
+            <motion.h1
+              initial="hidden"
+              whileInView={"show"}
+              variants={fadeIn("down", 0.2)}
+              viewport={{ once: false, amount: 0.6 }}
+              className="h1"
+            >
+              Explore the finest <span className="text-accent">Golbal</span>{" "}
+              Offer
+            </motion.h1>
+            <motion.p
+              initial="hidden"
+              whileInView={"show"}
+              variants={fadeIn("down", 0.4)}
+              viewport={{ once: false, amount: 0.6 }}
+              className="description max-w-[550px] mx-auto xl:mx-0 mb-6 xl:mb-10"
+            >
+              Find your ideal ride for any adventure with our diverse range of
+              affordable and dependable car rentals
+            </motion.p>
+            <motion.div
+              initial="hidden"
+              whileInView={"show"}
+              variants={fadeIn("down", 0.4)}
+              viewport={{ once: false, amount: 0.8 }}
+              className="flex gap-x-3 justify-center xl:justify-start"
+            >
+              <button className="btn-cta">
+                <Image
+                  src={"/icons/buttons/app-store.svg"}
+                  width={132}
+                  height={36}
+                  alt="google play btn"
+                />
+              </button>
+              <button className="btn-cta">
+                <Image
+                  src={"/icons/buttons/google-play.svg"}
+                  width={132}
+                  height={36}
+                  alt="google play btn"
+                />
+              </button>
+            </motion.div>
+          </div>
+          <motion.div
+            initial="hidden"
+            whileInView={"show"}
+            variants={fadeIn("up", 0.6)}
+            viewport={{ once: false, amount: 0.6 }}
+            className="relative w-full h-full max-h-[50vh] md:max-w-[70vw] xl:max-w-[860px] xl:max-h-[542px] xl:absolute xl:-right-[100px] min-[1680px]:right-[120px] xl:top-16"
+          >
+            <Image
+              src={"/images/hero/car.svg"}
+              fill
+              alt="hero image"
+              style={{ objectFit: "contain" }}
+              priority
+            />
+          </motion.div>
         </div>
+      </div>
+      {SearchActive ? (
+        <motion.div
+          amount={{ y: 0 }}
+          initial={{ y: "-100%" }}
+          transition={{ ease: easeInOut }}
+          className="fixed top-[80px] z-10 w-full max-w-[1920px]"
+        >
+          <Search />
+        </motion.div>
       ) : (
         <div className="-mt-12 w-full max-w-[1300px] mx-auto">
-          <Search />
+          <motion.div
+            initial="hidden"
+            whileInView={"show"}
+            variants={fadeIn("up", 0.8)}
+            viewport={{ once: false, amount: 0.2 }}
+          >
+            <Search />
+          </motion.div>
         </div>
       )}
     </section>
