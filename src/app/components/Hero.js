@@ -8,8 +8,7 @@ import { motion, easeInOut } from "framer-motion";
 import { fadeIn } from "../../../variants";
 
 const Hero = () => {
-  const { SearchActive } = useContext(SearchContext);
-  console.log("sear", SearchActive);
+  const { searchActive } = useContext(SearchContext);
   return (
     <section className="h-screen xl:h-[90vh] bg-[#b2b7c2]/10" id="home">
       <div className="container mx-auto h-full xl:pt-10">
@@ -77,7 +76,7 @@ const Hero = () => {
           </motion.div>
         </div>
       </div>
-      {SearchActive ? (
+      {searchActive ? (
         <motion.div
           amount={{ y: 0 }}
           initial={{ y: "-100%" }}
